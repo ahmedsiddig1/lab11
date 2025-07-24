@@ -163,24 +163,25 @@ echo '{"username": "admin@snyk.io", "password": {"$gt": ""}}' | http --json http
 ## Screenshots
 
 #### Snyk scan results
-![]()
+![Snyk scan results](Snyk scan results.png)
 
 ### Goof app running
-![]()
+![Goof app running](Goof app running)
 
 ### Terminal showing snyk wizard interaction
-![]()
+![Terminal showing snyk wizard interaction](Terminal showing snyk wizard interaction.png)
 
 ### Browser views before/after fix
-![]()
+![Browser views before/after fix](Browser views before/after fix.png)
 
 ### Snyk dashboard or email report
-![]()
+![Snyk dashboard or email report](Snyk dashboard or email report.png)
 
 ### Docker container details
-![]()
+![Docker container details](Docker container details.png)
 
 ### Network tab activity from browser
-![]()
+![](Network tab activity from browser.png)
 
 ### Exploit script execution output
+![Exploit script execution output](Exploit script execution output.png)
