@@ -172,7 +172,7 @@ echo '{"username": "admin@snyk.io", "password": {"$gt": ""}}' | http --json http
 ![Terminal showing snyk wizard interaction](https://github.com/ahmedsiddig1/lab11/blob/main/Terminal%20showing%20snyk%20wizard%20interaction.png)
 
 ### Browser views before/after fix
-![Browser views before/after fix](Browser views before/after fix.png)
+![Browser views before/after fix](Browser views before after fix.png)
 
 ### Snyk dashboard or email report
 ![Snyk dashboard or email report](Snyk dashboard or email report.png)
