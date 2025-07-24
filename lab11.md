@@ -165,23 +165,29 @@ echo '{"username": "admin@snyk.io", "password": {"$gt": ""}}' | http --json http
 #### Snyk scan results
 ![Snyk scan results](https://github.com/ahmedsiddig1/lab11/blob/main/Snyk%20scan%20results.png)
 
+
 ### Goof app running
 ![Goof app running](https://github.com/ahmedsiddig1/lab11/blob/main/Goof%20app%20running.png)
+
 
 ### Terminal showing snyk wizard interaction
 ![Terminal showing snyk wizard interaction](https://github.com/ahmedsiddig1/lab11/blob/main/Terminal%20showing%20snyk%20wizard%20interaction.png)
 
+
 ### Browser views before/after fix
-![Browser views before/after fix](Browser views before after fix.png)
+![Browser views before/after fix](https://github.com/ahmedsiddig1/lab11/blob/main/Browser%20views%20before%20after%20fix.png)
 
 ### Snyk dashboard or email report
 ![Snyk dashboard or email report](Snyk dashboard or email report.png)
 
+
 ### Docker container details
 ![Docker container details](https://github.com/ahmedsiddig1/lab11/blob/main/Docker%20container%20details.png)
 
+
 ### Network tab activity from browser
-![](Network tab activity from browser.png)
+![Network tab activity from browser](Network tab activity from browser.png)
+
 
 ### Exploit script execution output
 ![Exploit script execution output](Exploit script execution output.png)
