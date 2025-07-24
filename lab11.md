@@ -98,9 +98,9 @@ http://127.0.0.1:3001
 Manually crafted and accessed this LFI URL in the browser:
 
 http://127.0.0.1:3001/public/..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2Fetc%2Fpasswd
-This is a URL-encoded version of:
 
 **Result**
+
 The /etc/passwd file contents were successfully displayed in the browser, confirming that the application is vulnerable to LFI.
 
 **Output:**
