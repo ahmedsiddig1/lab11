@@ -143,4 +143,44 @@ cat nosql-exploits.sh
 
 # Manually running the NoSQL Injection payload (ns4)
 echo '{"username": "admin@snyk.io", "password": {"$gt": ""}}' | http --json http://localhost:3001/login -v
+```
 
+### Email Evidence
+
+
+### Rebuild & Validate Fix
+
+
+### Rebuild & Validate Fix
+
+
+### CTF Challenge - BlitzProp
+
+
+### Prototype Pollution
+
+
+## Screenshots
+
+#### Snyk scan results
+![]()
+
+### Goof app running
+![]()
+
+### Terminal showing snyk wizard interaction
+![]()
+
+### Browser views before/after fix
+![]()
+
+### Snyk dashboard or email report
+![]()
+
+### Docker container details
+![]()
+
+### Network tab activity from browser
+![]()
+
+### Exploit script execution output
