@@ -37,7 +37,7 @@ In this step, I set up the Goof vulnerable application, which is an intentionall
 
 ```bash
 # Clone the Goof GitHub repository
-git clone https://github.com/snyk/nodejs-goof.git
+git clone https://github.com/snyk-labs/nodejs-goof
 
 # Exploration
 cd nodejs-goof
@@ -144,9 +144,84 @@ cat nosql-exploits.sh
 # Manually running the NoSQL Injection payload (ns4)
 echo '{"username": "admin@snyk.io", "password": {"$gt": ""}}' | http --json http://localhost:3001/login -v
 ```
+### Snyk CLI Scanning
+This step involved scanning the Goof application for vulnerabilities using the Snyk CLI. I authenticated my CLI with Snyk, ran scans, reviewed the vulnerability output, and used `snyk wizard` to interactively remediate the issues.
+
+- #### Authenticate with Snyk
+
+**Command used:**
+```bash
+snyk auth
+```
+- #### Run Initial Vulnerability Scan
+**Command used:**
+```bash
+snyk test
+```
+**Output Details:**
+- Total dependencies tested: 566
+- Number of vulnerabilities: 126
+- Vulnerable paths: 468
+
+- #### Use snyk wizard to clean vulnerabilities
+-   **Step 1: Initial Snyk Scan**
+
+    I ran an initial scan to identify vulnerabilities in the Goof project:
+
+```bash
+        snyk test
+```
+
+-   **Step 2: Backup package.json and package-lock.json**
+    Before making changes, I created backups of the original dependency files to compare later.
+```bash
+        cp package.json package.json.bak
+        cp package-lock.json package-lock.json.bak
+```
+
+-   **Step 3: Attempted snyk wizard and Encountered Deprecation Error**
+    I attempted to use snyk wizard as per lab instructions:
+
+    ```snyk wizard```
+    **Error Message:**
+```bash
+        ⚠ WARNING: Snyk wizard was removed at 31 March 2022.
+        Please use 'snyk ignore' instead: https://updates.snyk.io/snyk-wizard-and-snyk-protect-removal-224137 
+```
+
+-   **Step 4: Used npm audit fix Instead**
+    Since snyk fix is currently in beta and not supported in my CLI setup (produced another error), I used npm audit fix to auto-fix known issues:
+
+    `npm audit fix`
+    For remaining issues, I ran:
+    `npm audit fix --force`
+
+-   **Step 5: Manually Updated Remaining Vulnerable Packages**
+    After audit fixes, I manually reviewed and updated the remaining vulnerable packages listed in the Snyk output.
+
+    I edited package.json directly and ran:
+    `npm install`
+-   **Step 6: Compare package.json Before and After**
+    To see changes in dependencies, I ran:
+    `diff package.json.bak package.json`
+
+-   **Step 7: Re-scan After Fixes**
+    I re-scanned to validate the cleanup:
+    `snyk test`
 
 ### Email Evidence
+To demonstrate the completion of the vulnerability scan and reporting, I received an email directly from Snyk containing the vulnerability report for the project.
 
+#### Steps:
+
+1. Registered or ran the Snyk scan on the project.
+2. Snyk automatically sent an email with the vulnerability report to my registered email address.
+3. Opened the email and reviewed the report.
+4. Took a screenshot of the email inbox showing the Snyk email subject, sender, and timestamp.
+
+#### Screenshot:
+
+![Snyk email evidence](screenshots/snyk-email.png)
 
 ### Rebuild & Validate Fix
 
@@ -162,7 +237,7 @@ echo '{"username": "admin@snyk.io", "password": {"$gt": ""}}' | http --json http
 
 ## Screenshots
 
-#### Snyk scan results
+### Snyk scan results
 ![Snyk scan results](https://github.com/ahmedsiddig1/lab11/blob/main/Snyk%20scan%20results.png)
 
 
