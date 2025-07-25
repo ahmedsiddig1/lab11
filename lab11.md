@@ -256,6 +256,8 @@ To demonstrate the completion of the vulnerability scan and reporting, I receive
 ### Browser views before/after fix
 ![Browser views before/after fix](https://github.com/ahmedsiddig1/lab11/blob/main/Browser%20views%20before%20after%20fix.png)
 
+![Browser views after fix](https://github.com/ahmedsiddig1/lab11/blob/main/Browser%20views%20after.png)
+
 ### Snyk dashboard or email report
 ![Snyk email evidence](https://github.com/ahmedsiddig1/lab11/blob/main/Email.png)
 
