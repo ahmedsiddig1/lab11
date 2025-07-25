@@ -221,13 +221,17 @@ To demonstrate the completion of the vulnerability scan and reporting, I receive
 
 #### Screenshot:
 
-![Snyk email evidence](screenshots/snyk-email.png)
+![Snyk email evidence](https://github.com/ahmedsiddig1/lab11/blob/main/Email.png)
 
 ### Rebuild & Validate Fix
 
+#### Commands Used
 
-### Rebuild & Validate Fix
+**Rebuild the Docker container with updated dependencies:**
 
+   ```bash
+   sudo docker-compose up --build
+   ```
 
 ### CTF Challenge - BlitzProp
 
@@ -253,7 +257,7 @@ To demonstrate the completion of the vulnerability scan and reporting, I receive
 ![Browser views before/after fix](https://github.com/ahmedsiddig1/lab11/blob/main/Browser%20views%20before%20after%20fix.png)
 
 ### Snyk dashboard or email report
-![Snyk dashboard or email report](Snyk dashboard or email report.png)
+![Snyk email evidence](https://github.com/ahmedsiddig1/lab11/blob/main/Email.png)
 
 
 ### Docker container details
