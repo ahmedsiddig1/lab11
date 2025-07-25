@@ -234,7 +234,16 @@ To demonstrate the completion of the vulnerability scan and reporting, I receive
    ```
 
 ### CTF Challenge - BlitzProp
+#### Steps Performed:
+- Built and launched the Docker container
+- Accessed the application via web
+- Used browser DevTools → Network tab to inspect requests.
 
+**Commands used**
+```bash
+cd blitzprop/web_blitzprop
+sudo docker-compose up --build
+```
 
 ### Prototype Pollution
 
