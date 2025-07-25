@@ -246,6 +246,25 @@ sudo docker-compose up --build
 ```
 
 ### Prototype Pollution
+#### Steps Performed
+- Modified and Run `exploit.py`
+- Access /static/images/file
+- Run Snyk Test
+- Fix with snyk wizard
+- Rebuild Container
+- Re-test Exploit
+
+
+**Commands used:**
+```bash
+python3 exploit.py
+snyk test
+snyk wizard
+sudo docker-compose down
+sudo docker-compose up --build
+```
+
+
 
 
 ## Screenshots
@@ -277,9 +296,3 @@ sudo docker-compose up --build
 ![Docker container details](https://github.com/ahmedsiddig1/lab11/blob/main/Docker%20container%20details.png)
 
 
-### Network tab activity from browser
-![Network tab activity from browser](Network tab activity from browser.png)
-
-
-### Exploit script execution output
-![Exploit script execution output](Exploit script execution output.png)
