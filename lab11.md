@@ -268,6 +268,8 @@ sudo docker-compose up --build
 ![Browser views after fix](https://github.com/ahmedsiddig1/lab11/blob/main/Browser%20views%20after.png)
 
 ### Snyk dashboard or email report
+![Snyk Dashboard](https://github.com/ahmedsiddig1/lab11/blob/main/snyk%20dashboard.png)
+
 ![Snyk email evidence](https://github.com/ahmedsiddig1/lab11/blob/main/Email.png)
 
 
